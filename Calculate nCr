@@ -1,0 +1,33 @@
+#include<math.h>
+float combination(int n, int r){
+    long long i,product;
+    long long z=n-r;
+    product=1;
+    for(i=n;i>=1;i--){
+        product*=i;
+    }
+    n=product;
+    product=1;
+    for(i=r;i>=1;i--){
+        product*=i;
+    }
+    r=product;
+    product=1;
+    for(i=z;i>=1;i--){
+        product*=i;
+    }
+    z=product;
+    
+    float fact=n/(r*z);
+    return fact;
+}
+
+#include <stdio.h>
+int main(){
+    int x,y;
+    printf("Enter n and r");
+    scanf("%d %d",&x,&y);
+    printf("Your result is %.2f",combination(x,y));
+    return 0;
+        
+}
