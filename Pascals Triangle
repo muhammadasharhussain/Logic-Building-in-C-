@@ -1,0 +1,43 @@
+int combination(int n, int r){
+    long long i,product;
+    long long z=n-r;
+    product=1;
+    for(i=n;i>=1;i--){
+        product*=i;
+    }
+    n=product;
+    product=1;
+    for(i=r;i>=1;i--){
+        product*=i;
+    }
+    r=product;
+    product=1;
+    for(i=z;i>=1;i--){
+        product*=i;
+    }
+    z=product;
+    
+    int fact=n/(r*z);
+    return fact;
+}
+
+
+
+#include <stdio.h>
+int main(){
+    int z,i,j,k,n=0,r;
+    printf("Enter Number of rows: ");
+    scanf("%d",&z);
+    for(i=1;i<=z;i++){
+        r=0;
+        for(j=1;j<=z-i;j++)
+            printf(" ");
+        for(k=1;k<=i;k++){
+            printf("%d ",combination(n,r));
+            r++;}
+    printf("\n");
+    n++;
+    }
+    return 0;
+        
+}
