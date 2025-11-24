@@ -1,0 +1,137 @@
+struct transaction{
+    int id;
+    char description[50];
+    int amount;
+    char category[20];
+    char date[11];
+    
+};
+#include <stdio.h>
+
+int main() {
+    int count=0;
+    int balance=1000;
+    int choice,i,exit;
+    struct transaction arr[100];
+    while(1){
+        if(exit==1)
+        break;
+        printf("\n1-Add Transaction\n2-View All Transactions\n3-Show Balance\n4-Search Transaction by ID\n5-Edit Transaction by ID\n6-Delete Transaction by ID\n7-Exit");
+        
+        printf("\n\nChoose Option: ");
+        scanf("%d",&choice);
+        switch(choice){
+            case 1:{
+                if (count==99)
+                    printf("Transaction limit reached");
+                else{
+                printf("\nInput ID: ");
+                scanf("%d",&arr[count].id);
+                getchar();
+                printf("Input Amount: ");
+                scanf("%d",&arr[count].amount);
+                getchar();
+                printf("Input Description: ");
+                scanf("%[^\n]s",arr[count].description);
+                getchar();
+                printf("Input Category: ");
+                scanf("%[^\n]s",arr[count].category);
+                getchar();
+                printf("Input Date: ");
+                scanf("%[^\n]s",arr[count].date);
+                getchar();
+                balance+=arr[count].amount;
+                count++;
+                }
+                break;
+            }
+            case 2:{
+                if (count==0)
+                    printf("\nNo Transactions Available");
+                else{
+                    for(i=0;i<count;i++){
+                        printf("\nID: %d",arr[i].id);
+                        printf("\nAmount: %d",arr[i].amount);
+                        printf("\nDescription: %s",arr[i].description);
+                        printf("\nCategory: %s",arr[i].category);
+                        printf("\nDate: %s\n",arr[i].date);
+                    }
+                }
+                break;
+            }
+            case 3:{
+                printf("\nCurrent Balance: %d",balance);
+                break;
+            }
+            case 4:{
+                int id,k=0;
+                printf("\nInput ID: ");
+                scanf("%d",&id);
+                for(i=0;i<count;i++){
+                    if (arr[i].id==id){
+                        k=1;
+                        printf("\nID: %d",arr[i].id);
+                        printf("\nAmount: %d",arr[i].amount);
+                        printf("\nDescription: %s",arr[i].description);
+                        printf("\nCategory: %s",arr[i].category);
+                        printf("\nDate: %s\n",arr[i].date);
+                    }
+                }if(k==0)
+                    printf("Transaction Not Found");
+                break;
+            }
+            case 5:{
+                int id,k=0;
+                printf("\nInput ID: ");
+                scanf("%d",&id);
+                for(i=0;i<count;i++){
+                    if (arr[i].id==id){
+                        k=1;
+                        balance-=arr[i].amount;
+                printf("Input Amount: ");
+                scanf("%d",&arr[i].amount);
+                getchar();
+                printf("Input Description: ");
+                scanf("%[^\n]s",arr[i].description);
+                getchar();
+                printf("Input Category: ");
+                scanf("%[^\n]s",arr[i].category);
+                getchar();
+                printf("Input Date: ");
+                scanf("%[^\n]s",arr[i].date);
+                getchar();
+                balance+=arr[i].amount;
+                break;
+                    }
+                }if(k==0)
+                    printf("Transaction Not Found");
+                break;
+                
+            }
+            case 6:{
+                int id,k=0;
+                printf("\nInput ID: ");
+                scanf("%d",&id);
+                for(i=0;i<count;i++){
+                    if (arr[i].id==id){
+                        balance-=arr[i].amount;
+                        count--;
+                        k=1;
+                        for (i; i < 100 - 1; i++) 
+                            arr[i] = arr[i + 1];
+                    }
+                }if(k==0)
+                    printf("Transaction Not Found");
+                break;
+            }
+            case 7:{
+                exit=1;
+                break;
+            }
+            default:{
+                printf("Invalid Option");
+                break;
+            }
+        }
+    }
+return 0;}
