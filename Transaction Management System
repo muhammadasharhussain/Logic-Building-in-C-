@@ -11,7 +11,7 @@ struct transaction{
 int main() {
     int count=0;
     int balance=1000;
-    int choice,i,exit;
+    int choice,i,exit=0;
     struct transaction arr[100];
     while(1){
         if(exit==1)
@@ -22,7 +22,7 @@ int main() {
         scanf("%d",&choice);
         switch(choice){
             case 1:{
-                if (count==99)
+                if (count==100)
                     printf("Transaction limit reached");
                 else{
                 printf("\nInput ID: ");
@@ -117,9 +117,10 @@ int main() {
                         balance-=arr[i].amount;
                         count--;
                         k=1;
-                        for (i; i < 100 - 1; i++) 
-                            arr[i] = arr[i + 1];
-                    }
+                        for (int j=i;j<count;j++) 
+                            arr[j] = arr[j + 1];
+                             break;
+                    }    
                 }if(k==0)
                     printf("Transaction Not Found");
                 break;
